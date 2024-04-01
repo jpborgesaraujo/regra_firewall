@@ -45,12 +45,10 @@ iptables -A FORWARD -d <dmz> -p tcp --sport 53 -m state --state ESTABLISHED,RELA
 
 8.Permita o tráfego TCP destinado à máquina 192.168.1.100 (DMZ) na porta 80, vindo de qualquer rede (Interna ou Externa).
 
-# Permitir tráfego TCP na porta 80 para a máquina na DMZ (192.168.1.100)
 iptables -A FORWARD -d 192.168.1.100 -p tcp --dport 80 -j ACCEPT
 
 9. Redirecione pacotes TCP destinados ao IP 200.20.5.1 porta 80, para a máquina 192.168.1.100 que está localizado na DMZ.
 
-# Redirecionar tráfego TCP na porta 80 para a máquina na DMZ (192.168.1.100)
 iptables -t nat -A PREROUTING -p tcp -d 200.20.5.1 --dport 80 -j DNAT --to-destination 192.168.1.100
 
 10. Faça com que a máquina 192.168.1.100 consiga responder os pacotes TCP recebidos na porta 80 corretamente.
