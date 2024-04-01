@@ -34,11 +34,11 @@ Permitir consultas DNS externas da DMZ
 iptables -A FORWARD -s <dmz> -p udp --dport 53 -j ACCEPT
 iptables -A FORWARD -s <dmz> -p tcp --dport 53 -j ACCEPT
 
-# Permitir respostas DNS de saída para a rede interna
+Permitir respostas DNS de saída para a rede interna
 iptables -A FORWARD -d <rede_interna> -p udp --sport 53 -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A FORWARD -d <rede_interna> -p tcp --sport 53 -m state --state ESTABLISHED,RELATED -j ACCEPT
 
-# Permitir respostas DNS de saída para a DMZ
+Permitir respostas DNS de saída para a DMZ
 iptables -A FORWARD -d <dmz> -p udp --sport 53 -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A FORWARD -d <dmz> -p tcp --sport 53 -m state --state ESTABLISHED,RELATED -j ACCEPT
 
